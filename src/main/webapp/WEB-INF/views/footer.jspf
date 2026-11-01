@@ -1,0 +1,7 @@
+</main>
+<footer class="footer">
+  Educational mini-project &mdash; simulation only, not for real financial transactions.
+</footer>
+<script src="${ctx}/js/script.js"></script>
+</body>
+</html>

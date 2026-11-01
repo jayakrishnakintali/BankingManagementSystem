@@ -1,0 +1,36 @@
+<%-- Shared header, included with the JSP *include directive* in every page.
+     The including page must declare the JSTL "c" taglib and may set ${pageTitle}. --%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><c:out value="${pageTitle}" default="Home"/> | SecureBank</title>
+  <link rel="stylesheet" href="${ctx}/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="${ctx}/index.jsp">&#127974; SecureBank</a>
+  <nav>
+    <c:choose>
+      <c:when test="${not empty sessionScope.user and sessionScope.user.admin}">
+        <a href="${ctx}/admin">Admin Dashboard</a>
+        <a href="${ctx}/logout" class="btn-small">Logout</a>
+      </c:when>
+      <c:when test="${not empty sessionScope.user}">
+        <a href="${ctx}/dashboard">Dashboard</a>
+        <a href="${ctx}/deposit">Deposit</a>
+        <a href="${ctx}/withdraw">Withdraw</a>
+        <a href="${ctx}/transfer">Transfer</a>
+        <a href="${ctx}/transactions">History</a>
+        <a href="${ctx}/logout" class="btn-small">Logout</a>
+      </c:when>
+      <c:otherwise>
+        <a href="${ctx}/login">Login</a>
+        <a href="${ctx}/register" class="btn-small">Register</a>
+      </c:otherwise>
+    </c:choose>
+  </nav>
+</header>
+<main class="container">
